@@ -58,6 +58,7 @@ private:
           if (!ec)
           {
             do_read_header();
+          if (!ec) {}
           }
         });
   }
@@ -131,16 +132,11 @@ int main(int argc, char* argv[])
 {
   try
   {
-    if (argc != 3)
-    {
-      std::cerr << "Usage: chat_client <host> <port>\n";
-      return 1;
-    }
 
     boost::asio::io_service io_service;
 
     tcp::resolver resolver(io_service);
-    auto endpoint_iterator = resolver.resolve({ argv[1], argv[2] });
+    auto endpoint_iterator = resolver.resolve({ "192.168.1.3", "7710" });
     chat_client c(io_service, endpoint_iterator);
 
     std::thread t([&io_service](){ io_service.run(); });

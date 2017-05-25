@@ -19,6 +19,7 @@
 #include "chat_message.hpp"
 
 using boost::asio::ip::tcp;
+std::list<char*> user_name;
 
 //----------------------------------------------------------------------
 
@@ -125,6 +126,10 @@ private:
         {
           if (!ec)
           {
+              if (*read_msg_.body()=='!')
+              {
+
+              }
             room_.deliver(read_msg_);
             do_read_header();
           }
@@ -199,23 +204,18 @@ private:
 
 //----------------------------------------------------------------------
 
-int main(int argc, char* argv[])
+int main()
 {
   try
   {
-   if (argc < 2)
-    {
-      std::cerr << "Usage: chat_server <port> [<port> ...]\n";
-      return 1;
-    }
+
 
     boost::asio::io_service io_service;
     std::list<chat_server> servers;
-    for (int i = 1; i < argc; ++i)
-    {
-      tcp::endpoint endpoint(tcp::v4(), std::atoi(argv[i]));
+
+      tcp::endpoint endpoint(tcp::v4(), 7710);
       servers.emplace_back(io_service, endpoint);
-    }
+
 
     io_service.run();
   }
