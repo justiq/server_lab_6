@@ -50,6 +50,14 @@ public:
   {
     return data_ + header_length;
   }
+  void rewrite (char* name_user, int name_size)
+  {
+      char data1 [header_length + max_body_length];
+      memcpy(data1,data_,body_length_);
+      for (int i =0; i<name_size; ++i)
+      {data_[i]=name_user[i];}
+      strncat(data_,data1,name_size);
+  }
 
   std::size_t body_length() const
   {
