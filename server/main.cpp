@@ -126,7 +126,10 @@ private:
         {
           if (!ec)
           {
-              if (*read_msg_.body()=='!')
+
+              if (*read_msg_.body()=='!')   // New user
+              {
+                  if (read_msg_.body_length()>2)
               {
                   user_user=read_msg_.body();
                   for (int i=0; i<read_msg_.body_length()-1; i++)
@@ -141,11 +144,17 @@ private:
                    std::cout<<"\n";*/
                 user_name.push_back(user_user);
                 std::cout<<user_name.front();
-              } else
-              {
-                  room_.deliver(read_msg_);
+                   read_msg_.rewrite (user_user,read_msg_.body_length());
+            do_read_header();
               }
-              read_msg_.rewrite (user_user,read_msg_.body_length());
+              else
+              {
+                  std::cout<< "Wrong name, past it again! \n";
+              do_read_header();
+              }
+               } else
+               room_.deliver(read_msg_);
+                  read_msg_.rewrite (user_user,read_msg_.body_length());
             do_read_header();
           }
           else
