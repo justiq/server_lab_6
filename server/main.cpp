@@ -126,44 +126,30 @@ private:
         {
           if (!ec)
           {
-<<<<<<< HEAD
-
-              if (*read_msg_.body()=='!')   // New user
-              {
-                user_user=read_msg_.body();
-=======
               if (*read_msg_.body()=='!')
               {
                   user_user=read_msg_.body();
->>>>>>> parent of 44784ed... some_shit_!DONT_WORK
                   for (int i=0; i<read_msg_.body_length()-1; i++)
                   {
                       user_user[i]=user_user[i+1];
                   }
                   user_user[read_msg_.body_length()-1]=':';
-               /*    for (int i=0; i<=read_msg_.body_length()-1; i++)
-                  {
-                     std::cout<<user_user[i];
-                  }
-                   std::cout<<"\n";*/
-                user_name.push_back(user_user);
-                std::cout<<user_name.front();
-<<<<<<< HEAD
-                   read_msg_.rewrite (user_user,read_msg_.body_length());
-            do_read_header();
 
-               } else
-               room_.deliver(read_msg_);
-              }
-            room_.deliver(read_msg_);
-            read_msg_.rewrite (user_user,read_msg_.body_length());
-=======
+                   std::cout<<"\n";
+                user_name.push_back(user_user);
+                std::cout<<user_name.front()<<" keek"<<std::endl;
               } else
               {
                   room_.deliver(read_msg_);
               }
               read_msg_.rewrite (user_user,read_msg_.body_length());
->>>>>>> parent of 44784ed... some_shit_!DONT_WORK
+            //  for (int i=0; i<=read_msg_.body_length()-1; i++)
+              //    {
+                //     std::cout<<user_user[i];
+                     //delete[] user_user;
+                  //}
+                  std::cout<<"ghhj";
+
             do_read_header();
           }
           else
@@ -196,6 +182,7 @@ private:
         });
   }
 char* user_user;
+
   tcp::socket socket_;
   chat_room& room_;
   chat_message read_msg_;

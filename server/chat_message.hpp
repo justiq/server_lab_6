@@ -62,6 +62,15 @@ public:
     if (body_length_ > max_body_length)
       body_length_ = max_body_length;
   }
+    void rewrite (char name_user [], int name_size) //rewrite
+  {
+      char data1 [header_length + max_body_length];
+     //memcpy(data1,data_,body_length_);
+    // data_=name_user;
+     strncat(data_,name_user,name_size);
+        std::cout<<data_<< std::endl;
+
+  }
 
   bool decode_header()
   {
