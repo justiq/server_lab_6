@@ -129,9 +129,7 @@ private:
 
               if (*read_msg_.body()=='!')   // New user
               {
-                  if (read_msg_.body_length()>2)
-              {
-                  user_user=read_msg_.body();
+                user_user=read_msg_.body();
                   for (int i=0; i<read_msg_.body_length()-1; i++)
                   {
                       user_user[i]=user_user[i+1];
@@ -146,15 +144,12 @@ private:
                 std::cout<<user_name.front();
                    read_msg_.rewrite (user_user,read_msg_.body_length());
             do_read_header();
-              }
-              else
-              {
-                  std::cout<< "Wrong name, past it again! \n";
-              do_read_header();
-              }
+
                } else
                room_.deliver(read_msg_);
-                  read_msg_.rewrite (user_user,read_msg_.body_length());
+              }
+            room_.deliver(read_msg_);
+            read_msg_.rewrite (user_user,read_msg_.body_length());
             do_read_header();
           }
           else
@@ -186,12 +181,11 @@ private:
           }
         });
   }
-
+char* user_user;
   tcp::socket socket_;
   chat_room& room_;
   chat_message read_msg_;
   chat_message_queue write_msgs_;
-  char* user_user;
 };
 
 //----------------------------------------------------------------------
