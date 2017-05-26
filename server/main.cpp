@@ -126,10 +126,16 @@ private:
         {
           if (!ec)
           {
+<<<<<<< HEAD
 
               if (*read_msg_.body()=='!')   // New user
               {
                 user_user=read_msg_.body();
+=======
+              if (*read_msg_.body()=='!')
+              {
+                  user_user=read_msg_.body();
+>>>>>>> parent of 44784ed... some_shit_!DONT_WORK
                   for (int i=0; i<read_msg_.body_length()-1; i++)
                   {
                       user_user[i]=user_user[i+1];
@@ -142,6 +148,7 @@ private:
                    std::cout<<"\n";*/
                 user_name.push_back(user_user);
                 std::cout<<user_name.front();
+<<<<<<< HEAD
                    read_msg_.rewrite (user_user,read_msg_.body_length());
             do_read_header();
 
@@ -150,6 +157,13 @@ private:
               }
             room_.deliver(read_msg_);
             read_msg_.rewrite (user_user,read_msg_.body_length());
+=======
+              } else
+              {
+                  room_.deliver(read_msg_);
+              }
+              read_msg_.rewrite (user_user,read_msg_.body_length());
+>>>>>>> parent of 44784ed... some_shit_!DONT_WORK
             do_read_header();
           }
           else

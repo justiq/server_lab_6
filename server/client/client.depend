@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1495783823 source:c:\users\user\desktop\server_lab_6\server\client\main.cpp
-	<cstdlib>
-	<deque>
-	<iostream>
-	<thread>
-	<boost/asio.hpp>
-	"chat_message.hpp"
-
